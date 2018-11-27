@@ -1,0 +1,49 @@
+server:
+  port: 8333
+
+
+spring:
+  application:
+    name: jingjiyun-newsfbagentpvpercentageweb
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:9999/eureka/,http://peer2:9999/eureka/
+
+datasource:
+  mysql:
+    driverclass: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.16.64.240:3122/bigdata?characterEncoding=utf8
+    username: xztbigdata_w
+    password: pwRdQ4mZku
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  kylin:
+    driverclass: org.apache.kylin.jdbc.Driver
+    url: jdbc:kylin://kylin.light.fang.com:80/searchkeywords
+    username: ADMIN
+    password: KYLIN
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
