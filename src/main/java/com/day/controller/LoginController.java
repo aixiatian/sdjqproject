@@ -15,11 +15,29 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "/index", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/", method = {RequestMethod.POST, RequestMethod.GET})
     public String index() {
-        return "test";
+        return "redirect:/index.html";
     }
 
+    @RequestMapping(value = "/registe", method = {RequestMethod.POST})
+    @ResponseBody
+    public ErrorMsg registe(HttpServletRequest request, HttpServletResponse response, LoginBean searchListBean) throws InterruptedException {
+        ErrorMsg errorMsg = new ErrorMsg();
+        errorMsg.setErrcode("0");
+        errorMsg.setErrmsg("成功");
+        if (searchListBean == null || searchListBean.getUsername() == null
+                || searchListBean.getPwd().equals("")
+                || searchListBean.getVcode() ==  null) {
+            errorMsg.setErrcode("1");
+            errorMsg.setErrmsg("参数不能为空");
+            return errorMsg;
+        }
+
+        //TODO
+        errorMsg.setRequrl("/");
+        return errorMsg;
+    }
     @RequestMapping(value = "/login", method = {RequestMethod.POST})
     @ResponseBody
     public ErrorMsg login(HttpServletRequest request, HttpServletResponse response, LoginBean searchListBean) throws InterruptedException {
@@ -30,10 +48,10 @@ public class LoginController {
                 || searchListBean.getPwd().equals("")
                 || searchListBean.getVcode() ==  null) {
             errorMsg.setErrcode("1");
-            errorMsg.setErrmsg("agentid,district,city,housetype,soz参数不能为空");
+            errorMsg.setErrmsg("参数不能为空");
             return errorMsg;
         }
-
+        //TODO
         errorMsg.setRequrl("/");
         return errorMsg;
     }
